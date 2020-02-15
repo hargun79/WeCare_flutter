@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "448470220328",
+    "firebase_url": "https://we-care-1c9de.firebaseio.com",
+    "project_id": "we-care-1c9de",
+    "storage_bucket": "we-care-1c9de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448470220328:android:65bfc62748adaf9b54bf1d",
+        "android_client_info": {
+          "package_name": "com.hargunsinghsahni.we_care"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "448470220328-5f6kqfctgaa5bvpp7kodq2sebnrc723q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCL5D9w4gyV3htUbuZy0wqB_CoELfZrEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "448470220328-5f6kqfctgaa5bvpp7kodq2sebnrc723q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
