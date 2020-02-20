@@ -8,6 +8,7 @@ import 'package:we_care/screens/GetSafeguide.dart';
 import 'package:we_care/screens/BecomeSafeguide.dart';
 import 'package:we_care/screens/Connect.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:we_care/screens/welcome_screen.dart';
 
 class MyStatefulWidget extends StatefulWidget {
   MyStatefulWidget({Key key}) : super(key: key);
@@ -55,6 +56,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     setState(() {
       _auth.signOut();
       Navigator.pop(context);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => WelcomeScreen()),
+      );
     });
   }
 
