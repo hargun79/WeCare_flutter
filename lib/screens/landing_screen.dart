@@ -54,6 +54,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   void _select(Choice choice) {
     setState(() {
       _auth.signOut();
+      Navigator.pop(context);
     });
   }
 
