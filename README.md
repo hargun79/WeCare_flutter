@@ -3,7 +3,7 @@
 
 APK Drive Link: https://drive.google.com/open?id=1k1Rt6yONlRNj2NEXIsX7ASKcIXo7N2iR
 
-Hosted Presentation Link: https://wecare2020.netlify.com
+Presentation Link: https://wecare2020.netlify.com
 
 Prototype Video Link: https://www.youtube.com/watch?v=kNQuTlKCpN0&feature=youtu.be
 
@@ -16,7 +16,7 @@ Prototype Video Link: https://www.youtube.com/watch?v=kNQuTlKCpN0&feature=youtu.
 1. Report crimes like domestic violence, trafficking and prostitution.
 1. Helpline Numbers.
 1. Learn to fight back.
-1. Login/Signup.
+1. Authorization/Authentication.
 
 > We are trying to make people aware of the ignorance on the very sensitive issue of women safety. Our basic goal is to make people realise their responsibilities towards this very issue. We are using technology as a adhesive to bring together people irrespective of culture and religion. We also aim to eradicate all the social evils in the way of progress of women in today's society with the motto of "Women Empowering Women".
 
