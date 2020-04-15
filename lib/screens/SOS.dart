@@ -12,18 +12,13 @@ class SOS extends StatefulWidget {
 String number;
 
 class _SOSState extends State<SOS> {
-  /* _firestore
-      .collection('/users')
-      .document(loggedInUser.uid)
-      .data['emergencyContactNumber'];*/
-
   void getData() {
     _firestore
         .collection('/users')
-        .getDocuments()
-        .then((QuerySnapshot snapshot) {
-      snapshot.documents
-          .forEach((f) => number = '${f.data['emergencyContactNumber']}');
+        .document(loggedInUser.uid)
+        .get()
+        .then((DocumentSnapshot snapshot) {
+      number = snapshot.data['emergencyContactNumber'];
     });
   }
 
@@ -37,9 +32,7 @@ class _SOSState extends State<SOS> {
   void initState() {
     super.initState();
     getCurrentUser();
-    getData();
     getLocation();
-    Navigator.pop(context);
   }
 
   void getCurrentUser() async {
@@ -48,6 +41,7 @@ class _SOSState extends State<SOS> {
       if (user != null) {
         loggedInUser = user;
         print(loggedInUser.email);
+        getData();
       }
     } catch (e) {
       print(e);
@@ -56,7 +50,28 @@ class _SOSState extends State<SOS> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('SOS'),
+          backgroundColor: Colors.blueAccent,
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'SOS Sent',
+                  style: TextStyle(
+                    fontSize: 50.0,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }
 
