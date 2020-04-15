@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -32,7 +34,9 @@ class _SOSState extends State<SOS> {
   void initState() {
     super.initState();
     getCurrentUser();
-    getLocation();
+    Timer(Duration(seconds: 1), () {
+      getLocation();
+    });
   }
 
   void getCurrentUser() async {
