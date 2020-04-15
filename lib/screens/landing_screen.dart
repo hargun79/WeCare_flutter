@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:we_care/screens/SafeZone.dart';
+import 'package:we_care/screens/add_emergency_contact_screen.dart';
 import 'package:we_care/screens/fightBack.dart';
 import 'package:we_care/screens/helplineNumbers.dart';
 import 'package:we_care/screens/SOS.dart';
@@ -32,7 +33,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         );
       }
       if (index == 1) {
-        getLocation();
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SOS()),
+        );
       }
       if (index == 2) {
         Navigator.push(
@@ -52,15 +56,25 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     });
   }
 
-  void _select(Choice choice) {
-    setState(() {
-      _auth.signOut();
-      Navigator.pop(context);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => WelcomeScreen()),
-      );
-    });
+  void handleClick(String value) {
+    switch (value) {
+      case 'Logout':
+        setState(() {
+          _auth.signOut();
+          Navigator.pop(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => WelcomeScreen()),
+          );
+        });
+        break;
+      case 'Add Emergency Contact':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AddEmergencyContactScreen()),
+        );
+        break;
+    }
   }
 
   @override
@@ -70,13 +84,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         title: const Text('WeCare'),
         backgroundColor: Colors.blueAccent,
         actions: <Widget>[
-          PopupMenuButton<Choice>(
-            onSelected: _select,
+          PopupMenuButton<String>(
+            onSelected: handleClick,
             itemBuilder: (BuildContext context) {
-              return choices.skip(0).map((Choice choice) {
-                return PopupMenuItem<Choice>(
+              return {'Add Emergency Contact', 'Logout'}.map((String choice) {
+                return PopupMenuItem<String>(
                   value: choice,
-                  child: Text(choice.title),
+                  child: Text(choice),
                 );
               }).toList();
             },
@@ -253,4 +267,5 @@ class Choice {
 
 const List<Choice> choices = const <Choice>[
   const Choice(title: 'Log Out', icon: Icons.close),
+  const Choice(title: 'Add Emergency Contact', icon: Icons.close),
 ];
