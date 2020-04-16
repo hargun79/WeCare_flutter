@@ -5,6 +5,8 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:we_care/screens/landing_screen.dart';
 import 'package:we_care/constants.dart';
 
+String errorMessage;
+
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration_screen';
   @override
@@ -16,9 +18,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String email;
   String password;
   bool showSpinner = false;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
@@ -88,8 +92,33 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     setState(() {
                       showSpinner = false;
                     });
-                  } catch (e) {
-                    print(e);
+                  } catch (error) {
+                    //print(e);
+                    switch (error.code) {
+                      case "ERROR_OPERATION_NOT_ALLOWED":
+                        errorMessage = "Anonymous accounts are not enabled";
+                        break;
+                      case "ERROR_WEAK_PASSWORD":
+                        errorMessage = "Your password is too weak";
+                        break;
+                      case "ERROR_INVALID_EMAIL":
+                        errorMessage = "Your email is invalid";
+                        break;
+                      case "ERROR_EMAIL_ALREADY_IN_USE":
+                        errorMessage =
+                            "Email is already in use on different account";
+                        break;
+                      case "ERROR_INVALID_CREDENTIAL":
+                        errorMessage = "Your email is invalid";
+                        break;
+                      default:
+                        errorMessage = "An undefined Error happened.";
+                    }
+                    setState(() {
+                      showSpinner = false;
+                      FocusScope.of(context).unfocus();
+                      _displaySnackBar(context);
+                    });
                   }
                 },
               ),
@@ -98,5 +127,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
       ),
     );
+  }
+
+  _displaySnackBar(BuildContext context) {
+    final snackBar = SnackBar(content: Text('$errorMessage'));
+    _scaffoldKey.currentState.showSnackBar(snackBar);
   }
 }
