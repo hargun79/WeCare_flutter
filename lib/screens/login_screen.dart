@@ -4,6 +4,8 @@ import 'package:we_care/screens/landing_screen.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:we_care/constants.dart';
 
+String errorMessage;
+
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
   @override
@@ -15,9 +17,11 @@ class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
   String email;
   String password;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
@@ -87,8 +91,38 @@ class _LoginScreenState extends State<LoginScreen> {
                     setState(() {
                       showSpinner = false;
                     });
-                  } catch (e) {
-                    print(e);
+                  } catch (error) {
+                    //print(e);
+                    switch (error.code) {
+                      case "ERROR_INVALID_EMAIL":
+                        errorMessage =
+                            "Your email address appears to be malformed.";
+                        break;
+                      case "ERROR_WRONG_PASSWORD":
+                        errorMessage = "Your password is wrong.";
+                        break;
+                      case "ERROR_USER_NOT_FOUND":
+                        errorMessage = "User with this email doesn't exist.";
+                        break;
+                      case "ERROR_USER_DISABLED":
+                        errorMessage =
+                            "User with this email has been disabled.";
+                        break;
+                      case "ERROR_TOO_MANY_REQUESTS":
+                        errorMessage = "Too many requests. Try again later.";
+                        break;
+                      case "ERROR_OPERATION_NOT_ALLOWED":
+                        errorMessage =
+                            "Signing in with Email and Password is not enabled.";
+                        break;
+                      default:
+                        errorMessage = "An undefined Error happened.";
+                    }
+                    setState(() {
+                      showSpinner = false;
+                      FocusScope.of(context).unfocus();
+                      _displaySnackBar(context);
+                    });
                   }
                 },
               ),
@@ -97,5 +131,10 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  _displaySnackBar(BuildContext context) {
+    final snackBar = SnackBar(content: Text('$errorMessage'));
+    _scaffoldKey.currentState.showSnackBar(snackBar);
   }
 }
