@@ -37,6 +37,9 @@ class _SOSState extends State<SOS> {
     Timer(Duration(seconds: 1), () {
       getLocation();
     });
+    Timer(Duration(seconds: 5), () {
+      Navigator.pop(context);
+    });
   }
 
   void getCurrentUser() async {
@@ -67,7 +70,7 @@ class _SOSState extends State<SOS> {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  'SOS Sent',
+                  'SOS will be sent in a few seconds',
                   style: TextStyle(
                     fontSize: 50.0,
                   ),
