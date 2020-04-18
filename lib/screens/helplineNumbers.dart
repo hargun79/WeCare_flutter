@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+int counter = 0;
 
 class HelplineNumbers extends StatelessWidget {
   @override
@@ -24,6 +27,10 @@ class HelplineNumbers extends StatelessWidget {
                 fontSize: 20.0,
               ),
             ),
+            SizedBox(
+              height: 10,
+              width: 10,
+            ),
             myWidget(),
           ],
         ),
@@ -34,92 +41,106 @@ class HelplineNumbers extends StatelessWidget {
 
 Widget myWidget() {
   return Container(
-    margin: const EdgeInsets.all(20.0),
-    padding: const EdgeInsets.all(10.0),
-    decoration: myBoxDecoration(),
-    child: Table(children: [
-      TableRow(children: [
-        Text(
-          "DEPARTMENT",
-          style: TextStyle(
-            decoration: TextDecoration.underline,
-            fontWeight: FontWeight.w700,
+    height: 400,
+    width: 400,
+    child: DataTable(
+      onSelectAll: (b) {},
+      sortAscending: true,
+      columns: <DataColumn>[
+        DataColumn(
+          label: Text(
+            'Department',
+            style: TextStyle(fontSize: 25),
           ),
         ),
-        Text(
-          "NUMBER",
-          style: TextStyle(
-            decoration: TextDecoration.underline,
-            fontWeight: FontWeight.w700,
+        DataColumn(
+          label: Text(
+            'Number',
+            style: TextStyle(fontSize: 25),
           ),
         ),
-        SizedBox(
-          height: 20.0,
-        ),
-      ]),
-      TableRow(children: [
-        Text("PCR"),
-        Text("100"),
-        SizedBox(
-          height: 20.0,
-        ),
-      ]),
-      TableRow(children: [
-        Text("Eyes and Ears"),
-        Text("1090"),
-        SizedBox(
-          height: 20.0,
-        ),
-      ]),
-      TableRow(children: [
-        Text("Women in distress"),
-        Text("1091"),
-        SizedBox(
-          height: 20.0,
-        ),
-      ]),
-      TableRow(children: [
-        Text("Special Cell"),
-        Text("1093"),
-        SizedBox(
-          height: 20.0,
-        ),
-      ]),
-      TableRow(children: [
-        Text("Missing person"),
-        Text("1094"),
-        SizedBox(
-          height: 20.0,
-        ),
-      ]),
-      TableRow(children: [
-        Text("Traffic"),
-        Text("1095"),
-        SizedBox(
-          height: 20.0,
-        ),
-      ]),
-      TableRow(children: [
-        Text("Vigilance"),
-        Text("1064"),
-        SizedBox(
-          height: 20.0,
-        ),
-      ]),
-      TableRow(children: [
-        Text("For uploading audio and video clips"),
-        Text("9910641064"),
-        SizedBox(
-          height: 20.0,
-        ),
-      ]),
-    ]),
+      ],
+      rows: items
+          .map(
+            (itemRow) => DataRow(
+              cells: [
+                DataCell(
+                  Text(
+                    itemRow.itemDepartment,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  showEditIcon: false,
+                  placeholder: false,
+                ),
+                DataCell(
+                  Text(
+                    itemRow.itemNumber,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  showEditIcon: false,
+                  placeholder: false,
+                  onTap: () {
+                    _launchCaller(itemRow.itemNumber);
+                  },
+                ),
+              ],
+            ),
+          )
+          .toList(),
+    ),
   );
 }
 
-BoxDecoration myBoxDecoration() {
-  return BoxDecoration(
-    borderRadius: BorderRadius.circular(18.0),
-    border: Border.all(color: Colors.lightBlueAccent),
-  );
+class ItemInfo {
+  String itemDepartment;
+  String itemNumber;
+
+  ItemInfo({
+    this.itemDepartment,
+    this.itemNumber,
+  });
+}
+
+var items = <ItemInfo>[
+  ItemInfo(
+    itemDepartment: 'PCR',
+    itemNumber: '100',
+  ),
+  ItemInfo(
+    itemDepartment: 'Eyes and Ears',
+    itemNumber: '1090',
+  ),
+  ItemInfo(
+    itemDepartment: 'Women in distress',
+    itemNumber: '1091',
+  ),
+  ItemInfo(
+    itemDepartment: 'Special Cell',
+    itemNumber: '1093',
+  ),
+  ItemInfo(
+    itemDepartment: 'Missing person',
+    itemNumber: '1094',
+  ),
+  ItemInfo(
+    itemDepartment: 'Traffic',
+    itemNumber: '1095',
+  ),
+  ItemInfo(
+    itemDepartment: 'Vigilance',
+    itemNumber: '1064',
+  ),
+  ItemInfo(
+    itemDepartment: 'For uploading audio and video clips',
+    itemNumber: '9910641064',
+  ),
+];
+
+_launchCaller(String pno) async {
+  String url = "tel:" + pno;
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
 }
