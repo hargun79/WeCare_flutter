@@ -16,27 +16,31 @@ class _FightBackState extends State<FightBack> {
 
   @override
   void initState() {
-    _controller1 = VideoPlayerController.network(
-        "https://thumbs.gfycat.com/FluffyFlashyCockroach-mobile.mp4");
-    //_controller = VideoPlayerController.asset("assets/videos/ltfb1.mp4");
+    /*_controller1 = VideoPlayerController.network(
+        "https://thumbs.gfycat.com/FluffyFlashyCockroach-mobile.mp4");*/
+    _controller1 =
+        VideoPlayerController.asset("assets/FluffyFlashyCockroach-mobile.mp4");
     _initializeVideoPlayerFuture = _controller1.initialize();
     _controller1.setLooping(true);
     _controller1.setVolume(1.0);
-    _controller2 = VideoPlayerController.network(
-        "https://thumbs.gfycat.com/MetallicBoilingGermanshorthairedpointer-mobile.mp4");
-    //_controller = VideoPlayerController.asset("assets/videos/ltfb1.mp4");
+    /*_controller2 = VideoPlayerController.network(
+        "https://thumbs.gfycat.com/MetallicBoilingGermanshorthairedpointer-mobile.mp4");*/
+    _controller2 = VideoPlayerController.asset(
+        "assets/MetallicBoilingGermanshorthairedpointer-mobile.mp4");
     _initializeVideoPlayerFuture = _controller2.initialize();
     _controller2.setLooping(true);
     _controller2.setVolume(1.0);
-    _controller3 = VideoPlayerController.network(
-        "https://thumbs.gfycat.com/InnocentImpassionedBrocketdeer-mobile.mp4");
-    //_controller = VideoPlayerController.asset("assets/videos/ltfb1.mp4");
+    /*_controller3 = VideoPlayerController.network(
+        "https://thumbs.gfycat.com/InnocentImpassionedBrocketdeer-mobile.mp4");*/
+    _controller3 = VideoPlayerController.asset(
+        "assets/InnocentImpassionedBrocketdeer-mobile.mp4");
     _initializeVideoPlayerFuture = _controller3.initialize();
     _controller3.setLooping(true);
     _controller3.setVolume(1.0);
-    _controller4 = VideoPlayerController.network(
-        "https://thumbs.gfycat.com/FrenchFatGalapagosmockingbird-mobile.mp4");
-    //_controller = VideoPlayerController.asset("assets/videos/ltfb1.mp4");
+    /*_controller4 = VideoPlayerController.network(
+        "https://thumbs.gfycat.com/FrenchFatGalapagosmockingbird-mobile.mp4");*/
+    _controller4 = VideoPlayerController.asset(
+        "assets/FrenchFatGalapagosmockingbird-mobile.mp4");
     _initializeVideoPlayerFuture = _controller4.initialize();
     _controller4.setLooping(true);
     _controller4.setVolume(1.0);

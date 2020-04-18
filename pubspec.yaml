@@ -49,6 +49,10 @@ flutter:
 
   assets:
    - assets/images/logo.png
+   - assets/FluffyFlashyCockroach-mobile.mp4
+   - assets/MetallicBoilingGermanshorthairedpointer-mobile.mp4
+   - assets/InnocentImpassionedBrocketdeer-mobile.mp4
+   - assets/FrenchFatGalapagosmockingbird-mobile.mp4
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
