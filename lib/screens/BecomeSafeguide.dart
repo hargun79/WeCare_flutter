@@ -1,20 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:intl/intl.dart';
 
 String name;
 String dob;
 String pNumber;
 String email;
 String location;
+DateTime selectedDate = DateTime.now();
 
-class BecomeSafeguide extends StatelessWidget {
+class BecomeSafeguide extends StatefulWidget {
+  @override
+  _BecomeSafeguideState createState() => _BecomeSafeguideState();
+}
+
+class _BecomeSafeguideState extends State<BecomeSafeguide> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+
   final TextEditingController _controller1 = new TextEditingController();
+
   final TextEditingController _controller2 = new TextEditingController();
+
   final TextEditingController _controller3 = new TextEditingController();
+
   final TextEditingController _controller4 = new TextEditingController();
+
   final TextEditingController _controller5 = new TextEditingController();
+
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(1950, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+        var formatter = new DateFormat('dd-MM-yyyy');
+        String formatted = formatter.format(selectedDate);
+        dob = formatted;
+        _controller2.text = formatted.toString();
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,17 +78,19 @@ class BecomeSafeguide extends StatelessWidget {
                 },
               ),
               new TextFormField(
-                controller: _controller2,
-                decoration: const InputDecoration(
-                  icon: const Icon(Icons.calendar_today),
-                  hintText: 'Enter your date of birth',
-                  labelText: 'Dob',
-                ),
-                onChanged: (value) {
-                  dob = value;
-                },
-                keyboardType: TextInputType.datetime,
-              ),
+                  controller: _controller2,
+                  focusNode: AlwaysDisabledFocusNode(),
+                  decoration: const InputDecoration(
+                    icon: const Icon(Icons.calendar_today),
+                    hintText: 'Enter your date of birth',
+                    labelText: 'Dob',
+                  ),
+                  onChanged: (value) {
+                    dob = value;
+                  },
+                  onTap: () {
+                    _selectDate(context);
+                  }),
               new TextFormField(
                 controller: _controller3,
                 decoration: const InputDecoration(
@@ -133,4 +163,9 @@ class BecomeSafeguide extends StatelessWidget {
       ),
     );
   }
+}
+
+class AlwaysDisabledFocusNode extends FocusNode {
+  @override
+  bool get hasFocus => false;
 }
