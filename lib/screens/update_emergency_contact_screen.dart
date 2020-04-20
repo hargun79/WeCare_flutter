@@ -3,13 +3,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:we_care/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class AddEmergencyContactScreen extends StatefulWidget {
+class UpdateEmergencyContactScreen extends StatefulWidget {
   @override
-  _AddEmergencyContactScreenState createState() =>
-      _AddEmergencyContactScreenState();
+  _UpdateEmergencyContactScreenState createState() =>
+      _UpdateEmergencyContactScreenState();
 }
 
-class _AddEmergencyContactScreenState extends State<AddEmergencyContactScreen> {
+class _UpdateEmergencyContactScreenState
+    extends State<UpdateEmergencyContactScreen> {
   final _firestore = Firestore.instance;
   FirebaseUser loggedInUser;
   final _auth = FirebaseAuth.instance;
@@ -40,7 +41,7 @@ class _AddEmergencyContactScreenState extends State<AddEmergencyContactScreen> {
     return Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
-          title: Text('Add Emergency Contact'),
+          title: Text('Update Emergency Contact'),
           backgroundColor: Colors.blueAccent,
         ),
         body: Padding(
@@ -50,7 +51,7 @@ class _AddEmergencyContactScreenState extends State<AddEmergencyContactScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Text(
-                'Add Emergency Contact',
+                'Update Emergency Contact',
                 style: TextStyle(fontSize: 30.0),
               ),
               SizedBox(
@@ -93,7 +94,7 @@ class _AddEmergencyContactScreenState extends State<AddEmergencyContactScreen> {
   }
 
   _displaySnackBar(BuildContext context) {
-    final snackBar = SnackBar(content: Text('Emergency Contact Submitted'));
+    final snackBar = SnackBar(content: Text('Emergency Contact Updated'));
     _scaffoldKey.currentState.showSnackBar(snackBar);
   }
 }

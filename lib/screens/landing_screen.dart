@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:we_care/screens/SafeZone.dart';
-import 'package:we_care/screens/add_emergency_contact_screen.dart';
+import 'package:we_care/screens/update_emergency_contact_screen.dart';
 import 'package:we_care/screens/fightBack.dart';
 import 'package:we_care/screens/helplineNumbers.dart';
 import 'package:we_care/screens/SOS.dart';
@@ -68,10 +68,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           );
         });
         break;
-      case 'Add Emergency Contact':
+      case 'Update Emergency Contact':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => AddEmergencyContactScreen()),
+          MaterialPageRoute(
+              builder: (context) => UpdateEmergencyContactScreen()),
         );
         break;
     }
@@ -87,7 +88,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           PopupMenuButton<String>(
             onSelected: handleClick,
             itemBuilder: (BuildContext context) {
-              return {'Add Emergency Contact', 'Logout'}.map((String choice) {
+              return {'Update Emergency Contact', 'Logout'}
+                  .map((String choice) {
                 return PopupMenuItem<String>(
                   value: choice,
                   child: Text(choice),

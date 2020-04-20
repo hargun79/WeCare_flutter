@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:we_care/screens/landing_screen.dart';
 import 'package:we_care/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 String errorMessage;
 
@@ -15,8 +16,10 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _auth = FirebaseAuth.instance;
+  final _firestore = Firestore.instance;
   String email;
   String password;
+  String emergencyContactNumber;
   bool showSpinner = false;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -67,6 +70,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     hintText: 'Enter your password'),
               ),
               SizedBox(
+                height: 8.0,
+              ),
+              TextField(
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  emergencyContactNumber = value;
+                },
+                decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Enter emergency contact number'),
+              ),
+              SizedBox(
                 height: 24.0,
               ),
               FlatButton(
@@ -82,7 +96,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   try {
                     final newUser = await _auth.createUserWithEmailAndPassword(
                         email: email, password: password);
+                    FirebaseUser signedInUser = newUser.user;
                     if (newUser != null) {
+                      _firestore
+                          .collection('/users')
+                          .document(signedInUser.uid)
+                          .setData({
+                        'emergencyContactNumber': emergencyContactNumber,
+                      });
                       Navigator.push(
                         context,
                         MaterialPageRoute(
