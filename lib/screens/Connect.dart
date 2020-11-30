@@ -40,7 +40,7 @@ class Connect extends StatelessWidget {
               width: 5,
             ),
             Text(
-              'Event Interested in: HackVSIT',
+              'Event Interested in: HackWIE',
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 15.0,
@@ -138,7 +138,7 @@ class Connect extends StatelessWidget {
               width: 5,
             ),
             Text(
-              'Event Interested in: IND vs NZ (4th T20)',
+              'Event Interested in: IND vs AUS (1st ODI)',
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 15.0,
@@ -187,7 +187,7 @@ class Connect extends StatelessWidget {
               width: 5,
             ),
             Text(
-              'Event Interested in: Avensis 2020',
+              'Event Interested in: Stand Up (Akash Gupta)',
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 15.0,
@@ -236,7 +236,7 @@ class Connect extends StatelessWidget {
               width: 5,
             ),
             Text(
-              'Event Interested in: Genesis 2020',
+              'Event Interested in: Stand Up (Abhishek Upmanyu)',
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 15.0,

@@ -29,7 +29,7 @@ class SafeZone extends StatelessWidget {
                 width: 20,
               ),
               Text(
-                '1. VIPS, Pitampura',
+                '1. MSIT, Janakpuri',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 15,
@@ -46,7 +46,7 @@ class SafeZone extends StatelessWidget {
                     borderRadius: new BorderRadius.circular(18.0),
                     side: BorderSide(color: Colors.blue)),
                 onPressed: () {
-                  openMap(28.7209, 77.1415);
+                  openMap(28.6210, 77.0926);
                 },
               ),
               SizedBox(
