@@ -1,9 +1,11 @@
 # WeCare_flutter
 > It is a flutter application with the motto "Women Empowering Women".
 
-APK Drive Link: https://drive.google.com/open?id=1dVY6qdVIsjqGK5RNaNJh-PeWoqrWfwm5
+APK Drive Link: https://drive.google.com/file/d/1iNJ1l7_MOFu-RkqKxYOt9oRSC7uZ7MOu/view?usp=sharing
 
-Presentation Link: https://wecare2020.netlify.com
+Presentation Link: https://docs.google.com/presentation/d/1gJBSIGnI18JQ84EsMjVWaldFlL1cxZR8Fqv2dsT20XQ/edit?usp=sharing
+
+Prototype Video Explanation: https://youtu.be/i2hV08JWpbk
 
 ## Features of the Flutter App: 
 
